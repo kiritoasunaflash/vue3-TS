@@ -9,6 +9,7 @@ import router from './router'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'virtual:svg-icons-register'
 import  globalComponents  from '@/components/index'
+import axios from 'axios'
 const app = createApp(App)
 
 app.use(router)
