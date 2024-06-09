@@ -1,5 +1,4 @@
 <template>
-
   <RouterView />
 </template>
 
@@ -18,8 +17,4 @@ onMounted(() => {
   console.log(import.meta.env);
 </script>
 
-<style scoped lang="scss">
-.dev {
-  color: $colors;
-}
-</style>
+<style scoped lang="scss"></style>
