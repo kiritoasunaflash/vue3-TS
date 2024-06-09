@@ -13,6 +13,12 @@
                     <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar> -->
+            <!-- {{ useMenuStore.menuList }} -->
+            <el-scrollbar class="scrollbar">
+                <el-menu background-color="$base-menu-background" :unique-opened="true">
+                    <Menu :menuList="useMenuStore.menuList"></Menu>
+                </el-menu>
+            </el-scrollbar>
         </div>
         <!-- 顶部导航 -->
         <!-- :class="{ fold: LayOutSettingStore.fold ? true : false }" -->
@@ -33,8 +39,9 @@
 import { useRoute } from 'vue-router'
 //引入左侧菜单logo子组件
 import Logo from './logo/index.vue'
+import { menuStore } from '@/store/piniaModules/menu';
 // //引入菜单组件
-// import Menu from './menu/index.vue'
+import Menu from './menu/index.vue'
 // //右侧内容展示区域
 // import Main from './main/index.vue';
 // //引入顶部tabbar组件
@@ -43,6 +50,7 @@ import Logo from './logo/index.vue'
 // import useUserStore from '@/store/modules/user';
 // import useLayOutSettingStore from '@/store/modules/setting';
 // let userStore = useUserStore();
+let useMenuStore = menuStore()
 // //获取layout配置仓库
 
 // let LayOutSettingStore = useLayOutSettingStore();
@@ -110,5 +118,9 @@ export default {
         }
 
     }
+}
+
+::v-deep .el-menu-item:hover {
+    background-color: rgba(111, 10, 72, .4) !important
 }
 </style>
