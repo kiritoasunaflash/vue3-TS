@@ -15,7 +15,7 @@
             </el-scrollbar> -->
             <!-- {{ useMenuStore.menuList }} -->
             <el-scrollbar class="scrollbar">
-                <el-menu background-color="$base-menu-background" :unique-opened="true">
+                <el-menu background-color="$base-menu-background">
                     <Menu :menuList="useMenuStore.menuList"></Menu>
                 </el-menu>
             </el-scrollbar>
@@ -24,12 +24,12 @@
         <!-- :class="{ fold: LayOutSettingStore.fold ? true : false }" -->
         <div class="layout_tabbar">
             <!-- layout组件的顶部导航tabbar -->
-            <!-- <Tabbar></Tabbar> -->
+            <Tabbar></Tabbar>
         </div>
         <!-- 内容展示区域 -->
         <!-- :class="{ fold: LayOutSettingStore.fold ? true : false }" -->
         <div class="layout_main">
-            <!-- <Main></Main> -->
+            <Main></Main>
         </div>
     </div>
 </template>
@@ -43,9 +43,9 @@ import { menuStore } from '@/store/piniaModules/menu';
 // //引入菜单组件
 import Menu from './menu/index.vue'
 // //右侧内容展示区域
-// import Main from './main/index.vue';
+import Main from '@/components//main.vue';
 // //引入顶部tabbar组件
-// import Tabbar from './tabbar/index.vue';
+import Tabbar from './tabbar/index.vue';
 // //获取用户相关的小仓库
 // import useUserStore from '@/store/modules/user';
 // import useLayOutSettingStore from '@/store/modules/setting';
