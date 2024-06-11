@@ -4,20 +4,22 @@
             <el-icon>
                 <component :is="item.meta.icon"></component>
             </el-icon>
-            {{ item.meta.title }}
+            <span> {{ item.meta.title }}</span>
         </el-menu-item>
-        <el-menu-item :index="item.path" v-if="item.children && item.children.length === 1 && item.meta.flag">
+        <el-menu-item :index="item.path" v-if="item.children && item.children.length === 1 && item.meta.flag"
+            @click="goRoute">
             <el-icon>
                 <component :is="item.children[0].meta.icon"></component>
             </el-icon>
-            {{ item.children[0].meta.title }}
+            <span> {{ item.children[0].meta.title }}</span>
         </el-menu-item>
-        <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 1 && item.meta.flag">
+        <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 1 && item.meta.flag"
+            @click="goRoute">
             <template #title>
                 <el-icon>
                     <component :is="item.meta.icon"></component>
                 </el-icon>
-                {{ item.meta.title }}
+                <span>{{ item.meta.title }}</span>
             </template>
             <Menu :menuList="item.children"></Menu>
         </el-sub-menu>

@@ -17,15 +17,15 @@ export default {
 <style scoped lang="scss">
 .logo {
     width: 100%;
-    height: $base-menu-logo-height;
+    height: calc($base-menu-logo-height - 20px);
     color: white;
     display: flex;
     align-items: center;
     padding: 10px;
 
     img {
-        width: 60px;
-        height: 42px;
+        width: 40px;
+        height: 30px;
     }
 
     p {

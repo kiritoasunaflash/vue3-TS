@@ -66,6 +66,7 @@ export const constRoutes = [
     path: "/acl",
     name: "Acl",
     component: () => import("@/layout/index.vue"),
+    redirect: "/acl/user",
     meta: {
       title: "权限管理",
       flag: true,
@@ -108,22 +109,13 @@ export const constRoutes = [
     path: "/shop",
     name: "Shop",
     component: () => import("@/layout/index.vue"),
+    redirect: "/shop/brand",
     meta: {
       title: "商品管理",
       flag: true,
       icon: "Lock",
     },
     children: [
-      {
-        path: "/shop/attr",
-        name: "Attr",
-        component: () => import("@/views/shop/attr/index.vue"),
-        meta: {
-          title: "属性管理",
-          flag: true,
-          icon: "Aim",
-        },
-      },
       {
         path: "/shop/brand",
         name: "Brand",
@@ -132,6 +124,16 @@ export const constRoutes = [
           title: "品牌管理",
           flag: true,
           icon: "ShoppingCartFull",
+        },
+      },
+      {
+        path: "/shop/attr",
+        name: "Attr",
+        component: () => import("@/views/shop/attr/index.vue"),
+        meta: {
+          title: "属性管理",
+          flag: true,
+          icon: "Aim",
         },
       },
       {

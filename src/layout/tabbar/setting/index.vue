@@ -1,6 +1,6 @@
 <template>
-    <el-button size="small" icon="Refresh" circle></el-button>
-    <el-button size="small" icon="FullScreen" circle></el-button>
+    <el-button size="small" icon="Refresh" circle @click="handleRefresh"></el-button>
+    <el-button size="small" icon="FullScreen" circle @click="handleScrren"></el-button>
 
     <el-popover placement="bottom" title="主题设置" :width="300" trigger="hover">
         <!-- 表单元素 -->
@@ -9,15 +9,15 @@
                 <el-color-picker />
             </el-form-item>
             <el-form-item label="暗黑模式">
-                <el-switch v-model="dark" class="mt-2" style="margin-left: 24px" inline-prompt active-icon="MoonNight"
-                    inactive-icon="Sunny" />
+                <el-switch v-model="dark" style="margin-left: 24px" active-icon="MoonNight" inactive-icon="Sunny"
+                    @change="changeDark" />
             </el-form-item>
         </el-form>
         <template #reference>
             <el-button size="small" icon="Setting" circle></el-button>
         </template>
     </el-popover>
-    <!-- <img :src="userStore.avatar" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;"> -->
+    <img src="../../../../public/logo.png" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
     <!-- 下拉菜单 -->
     <el-dropdown>
         <span class="el-dropdown-link">
@@ -34,7 +34,34 @@
 </template>
 
 <script setup lang="ts">
-// import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { layoutSettingStore } from '@/store/piniaModules/layoutSetting';
+import { useFullscreen } from '@vueuse/core'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+let darkValue = localStorage.getItem('dark') === 'true';
+let dark = ref(darkValue)
+const useLayoutSetting = layoutSettingStore()
+const handleRefresh = () => {
+    console.log(useLayoutSetting.isRefresh);
+    useLayoutSetting.useRefresh()
+}
+// isFullscreen是否全屏状态 ,toggle进入全屏的动画
+const { isFullscreen, toggle } = useFullscreen()
+const handleScrren = () => {
+    toggle()
+}
+const setDark = () => {
+    console.log(dark.value);
+    document.documentElement.className = dark.value ? 'dark' : ''
+}
+const changeDark = () => {
+    setDark()
+    localStorage.setItem('dark', dark.value)
+}
+
+onMounted(() => {
+    setDark()
+})
 // import { useRouter, useRoute } from 'vue-router';
 // //获取用户相关的小仓库
 // import useUserStore from '@/store/modules/user';
