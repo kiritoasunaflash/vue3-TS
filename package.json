@@ -23,6 +23,7 @@
     "node-sass": "^9.0.0",
     "pinia": "^2.1.7",
     "sass": "^1.77.4",
+    "unplugin-element-plus": "^0.8.0",
     "vite-plugin-mock": "^3.0.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",

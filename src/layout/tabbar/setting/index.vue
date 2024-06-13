@@ -6,7 +6,7 @@
         <!-- 表单元素 -->
         <el-form>
             <el-form-item label="主题颜色">
-                <el-color-picker />
+                <el-color-picker v-model="color" show-alpha :teleported='false' @change="changeInstallColor" />
             </el-form-item>
             <el-form-item label="暗黑模式">
                 <el-switch v-model="dark" style="margin-left: 24px" active-icon="MoonNight" inactive-icon="Sunny"
@@ -37,9 +37,11 @@
 import { ref, onMounted } from 'vue'
 import { layoutSettingStore } from '@/store/piniaModules/layoutSetting';
 import { useFullscreen } from '@vueuse/core'
+import { useChangeColor } from '@/utils/changeColor'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 let darkValue = localStorage.getItem('dark') === 'true';
 let dark = ref(darkValue)
+let color = ref('rgb(121, 173, 255)')
 const useLayoutSetting = layoutSettingStore()
 const handleRefresh = () => {
     console.log(useLayoutSetting.isRefresh);
@@ -59,6 +61,17 @@ const changeDark = () => {
     localStorage.setItem('dark', dark.value)
 }
 
+
+// 使用示例  
+const changeInstallColor = () => {
+    const el = document.documentElement
+    el.style.setProperty('--el-color-primary', color.value)
+    el.style.setProperty('--el-color-primary-dark-2', useChangeColor(color.value, 0.3))
+    for (let i = 1; i <= 9; i++) {
+        el.style.setProperty(`--el-color-primary-light-${i}`, useChangeColor(color.value, 0.8))
+        // `${getLightColor('#558b2f', i / 10)}`
+    }
+}
 onMounted(() => {
     setDark()
 })
